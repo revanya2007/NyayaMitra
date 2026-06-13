@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NyayaMitra - AI Legal & Scheme Companion for Farmers</title>
+    <meta name="description" content="NyayaMitra is an AI-powered legal and government scheme assistant designed to help Indian farmers with land rights, PM-KISAN, crop insurance, and more.">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Style CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <div class="logo-icon me-2">
+                    <i class="fa-solid fa-scale-balanced logo-spin"></i>
+                </div>
+                <span class="brand-text">Nyaya<span class="text-accent">Mitra</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fa-solid fa-house me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#dashboard"><i class="fa-solid fa-table-columns me-1"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#chat-section"><i class="fa-solid fa-comments me-1"></i> AI Assistant</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features"><i class="fa-solid fa-circle-info me-1"></i> Features</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <div class="language-selector d-flex align-items-center">
+                            <i class="fa-solid fa-language text-light me-2"></i>
+                            <select id="langSelect" class="form-select form-select-sm">
+                                <option value="en" selected>English</option>
+                                <option value="ta">தமிழ் (Tamil)</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-light">
+        <div class="hero-overlay"></div>
+        <div class="container position-relative py-5">
+            <div class="row align-items-center py-5">
+                <div class="col-lg-7 text-center text-lg-start animate-fade-in-left">
+                    <span class="badge bg-accent text-dark px-3 py-2 rounded-pill fw-bold mb-3 uppercase-tracking">
+                        <i class="fa-solid fa-leaf me-1"></i> Empowering Farmers Through Technology
+                    </span>
+                    <h1 class="hero-title fw-extrabold mb-3">AI-Powered Legal &amp; Scheme Assistant</h1>
+                    <p class="hero-lead mb-4">
+                        NyayaMitra simplifies complex agricultural laws, mutation files, and government scheme eligibility criteria in plain, simple regional languages. Get instant answers to secure your rights.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
+                        <a href="#chat-section" class="btn btn-accent btn-lg px-4 py-3 rounded-pill fw-semibold shadow-lg">
+                            <i class="fa-solid fa-comment-dots me-2"></i> Ask NyayaMitra
+                        </a>
+                        <a href="#dashboard" class="btn btn-outline-light btn-lg px-4 py-3 rounded-pill fw-semibold">
+                            <i class="fa-solid fa-compass me-2"></i> Explore Services
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 mt-5 mt-lg-0 text-center animate-fade-in-right d-none d-lg-block">
+                    <div class="hero-card-display p-4">
+                        <div class="card-glass-effect p-4 text-start">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="badge-icon me-3">
+                                    <i class="fa-solid fa-seedling text-accent fs-3"></i>
+                                </div>
+                                <div>
+                                    <h5 class="m-0 text-white fw-bold">Farmer Scheme Assistant</h5>
+                                    <small class="text-accent-muted">Verify eligibility instantly</small>
+                                </div>
+                            </div>
+                            <p class="text-light-muted mb-0 fs-15">
+                                "Will I get the next installment of PM-KISAN if my land mutation records are pending?"
+                            </p>
+                            <hr class="border-secondary my-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-accent fs-13"><i class="fa-solid fa-circle-check me-1"></i> Gemini AI Powered</span>
+                                <span class="badge bg-success text-white"><i class="fa-solid fa-bolt me-1"></i>Live</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Wave Divider -->
+        <div class="hero-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,55.05,16.82,83.89,23.36,151.74,38.73,222.1,48.24,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="py-5 bg-light-green">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="text-primary-dark fw-bold uppercase-tracking text-uppercase">Interactive Core Services</span>
+                <h2 class="section-title fw-bold">Farmer Support Dashboard</h2>
+                <div class="title-underline mx-auto"></div>
+                <p class="text-muted max-width-600 mx-auto mt-2">
+                    Select a service category below to immediately pre-fill and launch the NyayaMitra Assistant with focused topics.
+                </p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <!-- Card 1: Ask Legal Question -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="dashboard-card h-100" onclick="prefillChat('legal')">
+                        <div class="card-accent-line"></div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="card-icon-container bg-emerald mb-3">
+                                <i class="fa-solid fa-scale-balanced text-white fs-4"></i>
+                            </div>
+                            <h4 class="card-title fw-bold">Ask Legal Question</h4>
+                            <p class="card-text text-muted flex-grow-1">
+                                Clear up confusion on land inheritance, leasing rights, contract farming agreements, and agricultural disputes.
+                            </p>
+                            <div class="mt-3 text-emerald fw-semibold card-action-link">
+                                Ask a Question <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Government Schemes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="dashboard-card h-100" onclick="prefillChat('schemes')">
+                        <div class="card-accent-line bg-schemes"></div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="card-icon-container bg-gold mb-3">
+                                <i class="fa-solid fa-hand-holding-dollar text-white fs-4"></i>
+                            </div>
+                            <h4 class="card-title fw-bold">Government Schemes</h4>
+                            <p class="card-text text-muted flex-grow-1">
+                                Explore regional agricultural schemes, crop insurance policies, subsidies, and verify your eligibility criteria.
+                            </p>
+                            <div class="mt-3 text-gold-dark fw-semibold card-action-link">
+                                Verify Eligibility <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Land Rights Guidance -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="dashboard-card h-100" onclick="prefillChat('land')">
+                        <div class="card-accent-line bg-land"></div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="card-icon-container bg-teal mb-3">
+                                <i class="fa-solid fa-map-location-dot text-white fs-4"></i>
+                            </div>
+                            <h4 class="card-title fw-bold">Land Rights Guidance</h4>
+                            <p class="card-text text-muted flex-grow-1">
+                                Guidance on land mutation, surveying, boundary disputes, and understanding land record documents (7/12, Patta, Jamabandi).
+                            </p>
+                            <div class="mt-3 text-teal fw-semibold card-action-link">
+                                Get Guidance <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Complaint Generator -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="dashboard-card h-100" onclick="prefillChat('complaint')">
+                        <div class="card-accent-line bg-complaint"></div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="card-icon-container bg-brown mb-3">
+                                <i class="fa-solid fa-file-pen text-white fs-4"></i>
+                            </div>
+                            <h4 class="card-title fw-bold">Complaint Generator</h4>
+                            <p class="card-text text-muted flex-grow-1">
+                                Draft structured complaint letters to local administrators, agricultural departments, or crop insurance providers.
+                            </p>
+                            <div class="mt-3 text-brown fw-semibold card-action-link">
+                                Draft Complaint <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Voice Assistant (Coming Soon) -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="dashboard-card h-100 card-disabled">
+                        <span class="badge-coming-soon">Coming Soon</span>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="card-icon-container bg-muted mb-3">
+                                <i class="fa-solid fa-microphone-slash text-white fs-4"></i>
+                            </div>
+                            <h4 class="card-title fw-bold text-muted">Voice Assistant</h4>
+                            <p class="card-text text-muted-opacity flex-grow-1">
+                                Dictate your question and receive spoken replies in local dialects. Accessible to farmers with low literacy levels.
+                            </p>
+                            <div class="mt-3 text-muted-opacity fw-semibold">
+                                <i class="fa-solid fa-clock me-1"></i> Under Development
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Assistant Section -->
+    <section id="chat-section" class="py-5">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="chat-container-card shadow-lg border-0 rounded-4 overflow-hidden">
+                        <div class="chat-header py-3 px-4 d-flex align-items-center justify-content-between text-white">
+                            <div class="d-flex align-items-center">
+                                <div class="chat-bot-avatar me-3">
+                                    <i class="fa-solid fa-robot text-accent fs-4"></i>
+                                    <span class="pulse-indicator"></span>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0 fw-bold">NyayaMitra AI Assistant</h5>
+                                    <small class="opacity-75" id="chatStatus">
+                                        <i class="fa-solid fa-circle-check text-accent fs-12 me-1"></i> 
+                                        Powered by Gemini AI — Online
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button id="loadHistoryBtn" class="btn btn-accent btn-sm rounded-pill px-3" title="Load query history">
+                                    <i class="fa-solid fa-clock-rotate-left me-1"></i> Load History
+                                </button>
+                                <button id="clearChatBtn" class="btn btn-outline-light btn-sm rounded-pill px-3" title="Clear all chat history">
+                                    <i class="fa-solid fa-trash-can me-1"></i> Clear Chat
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Chat Message Window -->
+                        <div class="chat-messages-area p-4" id="chatMessages">
+                            <!-- Welcome Message (injected by JS) -->
+                        </div>
+
+                        <!-- Chat Quick Suggestions -->
+                        <div class="px-4 py-2 bg-light-green border-top d-flex flex-wrap align-items-center gap-2">
+                            <span class="text-muted fw-semibold fs-13"><i class="fa-solid fa-fire text-accent me-1"></i> Quick Topics:</span>
+                            <button class="btn btn-sm btn-quick-suggest" onclick="suggestPrompt('What are the rules for PM-KISAN eligibility?')">PM-KISAN rules</button>
+                            <button class="btn btn-sm btn-quick-suggest" onclick="suggestPrompt('How do I apply for crop insurance claim?')">Crop insurance claim</button>
+                            <button class="btn btn-sm btn-quick-suggest" onclick="suggestPrompt('What paperwork is needed for land mutation?')">Land mutation paperwork</button>
+                            <button class="btn btn-sm btn-quick-suggest" onclick="suggestPrompt('Write a complaint letter for late subsidy payment')">Draft late subsidy complaint</button>
+                        </div>
+
+                        <!-- Chat Input Console -->
+                        <div class="chat-input-area p-3 border-top bg-white">
+                            <form id="chatForm" onsubmit="handleChatSubmit(event)">
+                                <div class="input-group">
+                                    <textarea id="chatInput" class="form-control border-1 py-3 px-4" rows="1" placeholder="Type your agricultural, scheme, or legal question here..." required></textarea>
+                                    <button class="btn btn-emerald px-4" type="submit" id="sendBtn">
+                                        <i class="fa-solid fa-paper-plane text-white me-2"></i> Send
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Chat History Container (Phase 3) -->
+                    <div id="historyContainer" class="mt-4 d-none animate-message">
+                        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                            <div class="card-header bg-light-green py-3 px-4 d-flex align-items-center justify-content-between">
+                                <h5 class="mb-0 fw-bold text-primary-dark">
+                                    <i class="fa-solid fa-clock-rotate-left text-emerald me-2"></i> Saved Chat History
+                                </h5>
+                                <button id="hideHistoryBtn" class="btn btn-outline-secondary btn-sm rounded-pill px-3" title="Hide history panel">
+                                    <i class="fa-solid fa-eye-slash me-1"></i> Hide History
+                                </button>
+                            </div>
+                            <div class="card-body p-4" style="background-color: var(--bg-light);">
+                                <div class="row g-4" id="historyCards">
+                                    <!-- History cards will be injected dynamically by JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section id="features" class="py-5 bg-white border-top">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="text-primary-dark fw-bold uppercase-tracking text-uppercase">Platform Highlights</span>
+                <h2 class="section-title fw-bold">Key Capabilities</h2>
+                <div class="title-underline mx-auto"></div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Feature 1 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-box p-4 text-center rounded-4 h-100 shadow-sm border">
+                        <div class="feature-icon bg-emerald-light text-emerald mb-3 mx-auto">
+                            <i class="fa-solid fa-gavel fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Legal Assistance</h5>
+                        <p class="text-muted fs-14 mb-0">
+                            Get answers surrounding complex tenancy agreements, boundary laws, inheritance rules, and land leasing acts.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-box p-4 text-center rounded-4 h-100 shadow-sm border">
+                        <div class="feature-icon bg-gold-light text-gold-dark mb-3 mx-auto">
+                            <i class="fa-solid fa-file-invoice-dollar fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Scheme Eligibility</h5>
+                        <p class="text-muted fs-14 mb-0">
+                            Check and compute custom eligibility for regional, state, and central farmer welfare benefits.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-box p-4 text-center rounded-4 h-100 shadow-sm border">
+                        <div class="feature-icon bg-teal-light text-teal mb-3 mx-auto">
+                            <i class="fa-solid fa-map-location fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Land Records</h5>
+                        <p class="text-muted fs-14 mb-0">
+                            Demystify mutations, registries, ownership transfers, and retrieve step-by-step processes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-box p-4 text-center rounded-4 h-100 shadow-sm border">
+                        <div class="feature-icon bg-blue-light text-blue mb-3 mx-auto">
+                            <i class="fa-solid fa-language fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Multilingual Support</h5>
+                        <p class="text-muted fs-14 mb-0">
+                            Built with deep language localization in mind (Hindi, Marathi, Punjabi, etc.) to bridge communication gaps.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5 text-light">
+        <div class="container">
+            <div class="row align-items-center text-center text-md-start">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h3 class="fw-bold text-white mb-2">Nyaya<span class="text-accent">Mitra</span></h3>
+                    <p class="mb-0 text-footer-muted">
+                        AI-powered legal and government scheme assistant designed exclusively for agricultural empowerment.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end text-center">
+                    <span class="badge bg-secondary px-3 py-2 text-light rounded-pill fs-13">
+                        <i class="fa-solid fa-graduation-cap me-1"></i> College Mini Project
+                    </span>
+                    <p class="mt-2 mb-0 text-footer-muted text-small">
+                        Developed as a showcase prototype for academic evaluation.
+                    </p>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start">
+                <p class="mb-0 text-footer-muted fs-14">
+                    &copy; 2026 NyayaMitra Project Team. All Rights Reserved.
+                </p>
+                <div class="footer-links mt-3 mt-md-0">
+                    <a href="#" class="text-footer-muted me-3">Home</a>
+                    <a href="#dashboard" class="text-footer-muted me-3">Services</a>
+                    <a href="#chat-section" class="text-footer-muted">AI Chat</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS script -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
